@@ -15,7 +15,7 @@ public class MixCache: NSObject {
     private var directory: URL
     
     /// Default cache instance. using "MixCache" for the name
-    static let `default`: MixCache = {
+    public static let `default`: MixCache = {
         let cache = MixCache("MixCache")
         return cache!
     }()
@@ -23,7 +23,7 @@ public class MixCache: NSObject {
     /// Init method.
     ///
     /// - parameter name: a name of the cache file directory
-    init?(_ name: String) {
+    public init?(_ name: String) {
         
         guard let cacheDic = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).last else {
             return nil
