@@ -26,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0713323A1E2F70F600B99C7C /* MixCache.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = MixCache.podspec; path = ../MixCache.podspec; sourceTree = "<group>"; };
 		075E63BD1E2E20B800AC8587 /* MixCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MixCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		075E63C01E2E20B800AC8587 /* MixCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixCache.h; sourceTree = "<group>"; };
 		075E63C11E2E20B800AC8587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +60,7 @@
 		075E63B31E2E20B800AC8587 = {
 			isa = PBXGroup;
 			children = (
+				0713323A1E2F70F600B99C7C /* MixCache.podspec */,
 				075E63BF1E2E20B800AC8587 /* MixCache */,
 				075E63CA1E2E20B800AC8587 /* MixCacheTests */,
 				075E63BE1E2E20B800AC8587 /* Products */,
