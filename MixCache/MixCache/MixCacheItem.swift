@@ -8,17 +8,17 @@
 
 import UIKit
 
-class MixCacheItem: NSObject, NSCoding {
+public class MixCacheItem: NSObject, NSCoding {
     
     public var obj: NSCoding
     public var expires: Date?
     
-    init(_ obj: NSCoding, _ expires: Date?) {
+    public init(_ obj: NSCoding, _ expires: Date?) {
         self.obj = obj;
         self.expires = expires
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         guard let obj = aDecoder.decodeObject(forKey: "obj") as? NSCoding else {
             return nil
         }
@@ -27,7 +27,7 @@ class MixCacheItem: NSObject, NSCoding {
         super.init()
     }
     
-    func encode(with aCoder: NSCoder) {
+    public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.obj, forKey: "obj")
         if let expires = self.expires {
             aCoder.encode(expires, forKey: "expires")
