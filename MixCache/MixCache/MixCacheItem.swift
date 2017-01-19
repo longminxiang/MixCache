@@ -33,4 +33,11 @@ public class MixCacheItem: NSObject, NSCoding {
             aCoder.encode(expires, forKey: "expires")
         }
     }
+    
+    public func didExpire() -> Bool {
+        if let expires = self.expires {
+            return expires.timeIntervalSinceNow < 0
+        }
+        return false
+    }
 }

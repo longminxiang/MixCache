@@ -7,3 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
+//! Project version number for MixCache.
+FOUNDATION_EXPORT double MixCacheVersionNumber;
+
+//! Project version string for MixCache.
+FOUNDATION_EXPORT const unsigned char MixCacheVersionString[];

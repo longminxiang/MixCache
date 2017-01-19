@@ -1,5 +1,5 @@
 //
-//  MixCacheable.swift
+//  MixCacheableProtocol.swift
 //  MixCache
 //
 //  Created by Eric Lung on 2017/1/18.

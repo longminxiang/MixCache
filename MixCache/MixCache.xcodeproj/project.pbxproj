@@ -10,8 +10,9 @@
 		075E63C71E2E20B800AC8587 /* MixCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075E63BD1E2E20B800AC8587 /* MixCache.framework */; };
 		075E63CC1E2E20B800AC8587 /* MixCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E63CB1E2E20B800AC8587 /* MixCacheTests.swift */; };
 		075E63CE1E2E20B800AC8587 /* MixCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 075E63C01E2E20B800AC8587 /* MixCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		075E63D81E2E20E200AC8587 /* MixCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E63D71E2E20E200AC8587 /* MixCache.swift */; };
-		07C1645F1E2F2795007F7CD5 /* MixCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1645E1E2F2795007F7CD5 /* MixCacheable.swift */; };
+		078987B91E30592D00120C41 /* MixCacheProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078987B81E30592D00120C41 /* MixCacheProtocol.swift */; };
+		078987BB1E305D2700120C41 /* MixFileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078987BA1E305D2700120C41 /* MixFileCache.swift */; };
+		07C1645F1E2F2795007F7CD5 /* MixCacheableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1645E1E2F2795007F7CD5 /* MixCacheableProtocol.swift */; };
 		07C164611E2F2A34007F7CD5 /* MixCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C164601E2F2A34007F7CD5 /* MixCacheItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,8 +34,9 @@
 		075E63C61E2E20B800AC8587 /* MixCacheTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixCacheTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		075E63CB1E2E20B800AC8587 /* MixCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixCacheTests.swift; sourceTree = "<group>"; };
 		075E63CD1E2E20B800AC8587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		075E63D71E2E20E200AC8587 /* MixCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixCache.swift; sourceTree = "<group>"; };
-		07C1645E1E2F2795007F7CD5 /* MixCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixCacheable.swift; sourceTree = "<group>"; };
+		078987B81E30592D00120C41 /* MixCacheProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixCacheProtocol.swift; sourceTree = "<group>"; };
+		078987BA1E305D2700120C41 /* MixFileCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixFileCache.swift; sourceTree = "<group>"; };
+		07C1645E1E2F2795007F7CD5 /* MixCacheableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixCacheableProtocol.swift; sourceTree = "<group>"; };
 		07C164601E2F2A34007F7CD5 /* MixCacheItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixCacheItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,8 +83,9 @@
 			children = (
 				075E63C01E2E20B800AC8587 /* MixCache.h */,
 				075E63C11E2E20B800AC8587 /* Info.plist */,
-				075E63D71E2E20E200AC8587 /* MixCache.swift */,
-				07C1645E1E2F2795007F7CD5 /* MixCacheable.swift */,
+				078987BA1E305D2700120C41 /* MixFileCache.swift */,
+				078987B81E30592D00120C41 /* MixCacheProtocol.swift */,
+				07C1645E1E2F2795007F7CD5 /* MixCacheableProtocol.swift */,
 				07C164601E2F2A34007F7CD5 /* MixCacheItem.swift */,
 			);
 			path = MixCache;
@@ -210,9 +213,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				075E63D81E2E20E200AC8587 /* MixCache.swift in Sources */,
+				078987B91E30592D00120C41 /* MixCacheProtocol.swift in Sources */,
+				078987BB1E305D2700120C41 /* MixFileCache.swift in Sources */,
 				07C164611E2F2A34007F7CD5 /* MixCacheItem.swift in Sources */,
-				07C1645F1E2F2795007F7CD5 /* MixCacheable.swift in Sources */,
+				07C1645F1E2F2795007F7CD5 /* MixCacheableProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
