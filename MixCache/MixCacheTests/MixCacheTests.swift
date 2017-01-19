@@ -29,88 +29,81 @@ class MixCacheTests: XCTestCase {
         
         cache = MixFileCache("TestCache")
         XCTAssertNotNil(cache, "init with name failed");
-        
     }
     
-    func testSetString() {
+    func testString() {
         let obj = "xxxxxx"
         let key = "testStringKey"
         MixFileCache.default.set(obj, key: key)
-        
-        if let obj1:String = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj, obj1, "设置和取回来的值不相等")
+        if let obj1: String = MixFileCache.default.get(key) {
+            XCTAssertEqual(obj, obj1)
         }
         else {
-            XCTFail("key \(key) 应该有值")
+            XCTFail()
         }
     }
     
-    func testSetObjects() {
+    func testStrings() {
         let obj = ["xxxxxx", "dddd", "e3333"]
         let key = "testObjectsKey"
         MixFileCache.default.set(obj, key: key)
-        
-        if let obj1:[String] = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj, obj1, "设置和取回来的值不相等")
+        if let obj1: [String] = MixFileCache.default.get(key) {
+            XCTAssertEqual(obj, obj1)
         }
         else {
-            XCTFail("key \(key) 应该有值")
+            XCTFail()
         }
     }
     
-    func testSetDate() {
+    func testDate() {
         let obj = Date()
         let key = "testDateKey"
         MixFileCache.default.set(obj, key: key)
-        
-        if let obj1:Date = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj, obj1, "设置和取回来的值不相等")
+        if let obj1: Date = MixFileCache.default.get(key) {
+            XCTAssertEqual(obj, obj1)
         }
         else {
-            XCTFail("key \(key) 应该有值")
+            XCTFail()
         }
     }
     
-    func testSetData() {
+    func testData() {
         if let obj = "123".data(using: .utf8) {
             let key = "testDataKey"
             MixFileCache.default.set(obj, key: key)
             MixFileCache.default.clearInternalCache()
-            
-            if let obj1:Data = MixFileCache.default.get(key) {
-                XCTAssertEqual(obj, obj1, "设置和取回来的值不相等")
+            if let obj1: Data = MixFileCache.default.get(key) {
+                XCTAssertEqual(obj, obj1)
             }
             else {
-                XCTFail("key \(key) 应该有值")
+                XCTFail()
             }
         }
     }
     
-    func testSetNSCoding() {
+    func testNSCoding() {
         let obj = NSUUID()
         let key = "testNSCodingKey"
         MixFileCache.default.set(obj, key: key)
         MixFileCache.default.clearInternalCache()
-        
-        if let obj1:NSUUID = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj, obj1, "设置和取回来的值不相等")
+        if let obj1: NSUUID = MixFileCache.default.get(key) {
+            XCTAssertEqual(obj, obj1)
         }
         else {
-            XCTFail("key \(key) 应该有值")
+            XCTFail()
         }
     }
     
-    func testSetNSCodingObjects() {
+    func testNSCodingObjects() {
         let obj = [NSUUID(), NSUUID(), NSUUID(), NSUUID()]
         let key = "testNSCodingObjectsKey"
         MixFileCache.default.set(obj, key: key)
         MixFileCache.default.clearInternalCache()
-        
-        if let obj1:[NSUUID] = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj, obj1, "设置和取回来的值不相等")
+        if let obj1: [NSUUID] = MixFileCache.default.get(key) {
+            XCTAssertEqual(obj, obj1)
         }
         else {
-            XCTFail("key \(key) 应该有值")
+            XCTFail()
         }
     }
     
@@ -119,12 +112,11 @@ class MixCacheTests: XCTestCase {
         let key = "testIntKey"
         MixFileCache.default.set(obj, key: key)
         MixFileCache.default.clearInternalCache()
-        
-        if let obj1:Int = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj, obj1, "设置和取回来的值不相等")
+        if let obj1: Int = MixFileCache.default.get(key) {
+            XCTAssertEqual(obj, obj1)
         }
         else {
-            XCTFail("key \(key) 应该有值")
+            XCTFail()
         }
     }
     
@@ -135,10 +127,10 @@ class MixCacheTests: XCTestCase {
         MixFileCache.default.clearInternalCache()
         
         if let obj1:Float = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj1, 500.0, "设置和取回来的值不相等")
+            XCTAssertEqual(obj1, 500.0)
         }
         else {
-            XCTFail("key \(key) 应该有值")
+            XCTFail()
         }
     }
     
@@ -148,18 +140,18 @@ class MixCacheTests: XCTestCase {
         MixFileCache.default.set(obj, key: key)
         MixFileCache.default.clearInternalCache()
         
-        if let obj1:String = MixFileCache.default.get(key) {
+        if let obj1: String = MixFileCache.default.get(key) {
             print(obj1)
-            XCTFail("key \(key) 不应该有值")
+            XCTFail()
         }
     }
     
     func testExists() {
         let key = "testExistsKey"
         MixFileCache.default.set("ccccc", key: key)
-        XCTAssertTrue(MixFileCache.default.exists(key: key), "key \(key) 应该存在")
+        XCTAssertTrue(MixFileCache.default.exists(key: key), "key \(key) should exists")
         let key1 = "testExistsKey1"
-        XCTAssertFalse(MixFileCache.default.exists(key: key1), "key \(key1) 应该不存在")
+        XCTAssertFalse(MixFileCache.default.exists(key: key1), "key \(key1) should not exists")
     }
     
     func testRemoveObject() {

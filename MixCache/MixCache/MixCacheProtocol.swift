@@ -16,21 +16,23 @@ public protocol MixCacheProtocol {
     /// The place where you put the code of the get method
     func _get<T>(_ key: String) -> T?
     
-    /// Check the cached object is exists
-    func exists(key: String) -> Bool
-    
     /// Remove the cached object
     func remove(objectForKey key: String)
     
     /// Remove all the cached object
+    /// optional
     func removeAllObjects()
+    
+    /// Check the cached object is exists
+    /// optional
+    func exists(key: String) -> Bool
 }
 
 extension MixCacheProtocol {
-
-    private func _set(_ obj: NSCoding, key: String, expires: Date?) {}
     
-    private func _get<T>(_ key: String) -> T? { return nil }
+    private func exists(key: String) -> Bool { return false }
+    
+    private func removeAllObjects() {}
     
     // MARK: Set Method
     
