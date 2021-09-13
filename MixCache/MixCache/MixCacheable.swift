@@ -25,6 +25,10 @@ extension Data: MixCacheable { public typealias RefType = NSData }
 
 extension Date: MixCacheable { public typealias RefType = NSDate }
 
+extension Array: MixCacheable { public typealias RefType = NSArray }
+
+extension Dictionary: MixCacheable { public typealias RefType = NSDictionary }
+
 extension Int: MixNumCacheable {}
 
 extension UInt: MixNumCacheable {}

@@ -87,7 +87,7 @@ class MixCacheTests: XCTestCase {
     }
 
     func testData() {
-        let obj = "123dddddd".data(using: .utf8)! as Data
+        let obj = "123dddddd".data(using: .utf8)!
         let key = "testDataKey"
         MixFileCache.shared.set(obj, key: key)
         let obj1: Data? = MixFileCache.shared.get(key)
@@ -101,6 +101,43 @@ class MixCacheTests: XCTestCase {
         let obj1: Int? = MixFileCache.shared.get(key)
         XCTAssertNotNil(obj1)
     }
+    
+    func testArray() {
+        let key = "testArrayKey"
+        MixFileCache.shared.set([1, 2 , 3], key: key)
+        let obj1: [Int]? = MixFileCache.shared.get(key)
+        XCTAssertNotNil(obj1)
+    }
+    
+    func testNSArray() {
+        let key = "testNSArrayKey"
+        let obj = NSMutableArray()
+        obj.add(1)
+        obj.add("ddd")
+        obj.add(Date())
+        MixFileCache.shared.set(obj, key: key)
+        let obj1: NSMutableArray? = MixFileCache.shared.get(key)
+        XCTAssertNotNil(obj1)
+    }
+    
+    func testDictionary() {
+        let key = "testDictionaryKey"
+        let obj: [String: Any] = ["dd": "y", "z": 22, "ccc": "ddd".data(using: .utf8)!]
+        MixFileCache.shared.set(obj, key: key)
+        let obj1: [String: Any]? = MixFileCache.shared.get(key)
+        XCTAssertNotNil(obj1)
+    }
+    
+    func testNSDictionary() {
+        let key = "testNSDictionaryKey"
+        let obj = NSMutableDictionary()
+        obj.setObject("yyy", forKey: "a" as NSString)
+        obj.setObject(NSDate(), forKey: "cc" as NSString)
+        MixFileCache.shared.set(obj, key: key)
+        let obj1: NSMutableDictionary? = MixFileCache.shared.get(key)
+        XCTAssertNotNil(obj1)
+    }
+
 
     func testMixReturn() {
         let obj = 500

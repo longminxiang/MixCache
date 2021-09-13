@@ -10,11 +10,23 @@ import UIKit
 
 public protocol MixCacheProtocol {
     
-    func set<T: MixCacheable>(_ obj: T, key: String, expires: Date?)
+    func set<T>(_ obj: T, key: String, expires: Date?) where T: NSObject, T: NSCoding
     
-    func get<T: MixCacheable>(_ key: String) -> T?
+    func get<T>(_ key: String) -> T? where T: NSObject, T: NSCoding
         
     func remove(_ key: String)
     
     func removeAll()
+}
+
+extension MixCacheProtocol {
+
+    public func set<T: MixCacheable>(_ obj: T, key: String, expires: Date?=nil) {
+        self.set(obj.codedObject, key: key, expires: expires)
+    }
+    
+    func get<T: MixCacheable>(_ key: String) -> T? {
+        let item: T.RefType? = self.get(key)
+        return item as? T
+    }
 }

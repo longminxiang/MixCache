@@ -13,6 +13,7 @@ public class MixFileCache: NSObject, MixCacheProtocol {
     private var internalCache: NSCache<NSString, AnyObject> = NSCache()
     private var queue: DispatchQueue
     private var directory: URL
+    public var isSync: Bool = false
     
     public static let shared: MixFileCache = {
         let cache = MixFileCache("MixCache")
@@ -34,16 +35,11 @@ public class MixFileCache: NSObject, MixCacheProtocol {
         self.queue = DispatchQueue(label: name)
         self.internalCache.name = name
     }
-    
-    public func set<T: MixCacheable>(_ obj: T, key: String, expires: Date?=nil) {
-        self.set(obj, key: key, expires: expires, sync: false)
-    }
   
-    public func set<T: MixCacheable>(_ obj: T, key: String, expires: Date?=nil, sync: Bool?=nil) {
-        let item = MixCacheItem(obj.codedObject, expires)
+    public func set<T>(_ obj: T, key: String, expires: Date?=nil) where T: NSObject, T: NSCoding {
+        let item = MixCacheItem(obj, expires)
         let path = self.getURL(key: key).path
-        let isSync = sync ?? false
-        if (isSync) {
+        if (self.isSync) {
             self.queue.sync {
                 _ = NSKeyedArchiver.mixcache_archive(item, secure: true, toFile: path)
             }
@@ -56,15 +52,15 @@ public class MixFileCache: NSObject, MixCacheProtocol {
         }
     }
     
-    public func get<T: MixCacheable>(_ key: String) -> T? {
-        if let item = self.internalCache.object(forKey: key as NSString) as? MixCacheItem<T.RefType> {
+    public func get<T>(_ key: String) -> T? where T: NSObject, T: NSCoding {
+        if let item = self.internalCache.object(forKey: key as NSString) as? MixCacheItem<T> {
             if (item.didExpire) {
                 self.remove(key)
             }
-            return item.didExpire ? nil : item.item as? T
+            return item.didExpire ? nil : item.item
         }
 
-        var item: MixCacheItem<T.RefType>?
+        var item: MixCacheItem<T>?
         let path = self.getURL(key: key).path
         self.queue.sync {
             item = NSKeyedUnarchiver.mixcache_unarchive(path: path)
@@ -78,7 +74,7 @@ public class MixFileCache: NSObject, MixCacheProtocol {
                 self.internalCache.setObject(item, forKey: key as NSString)
             }
         }
-        return item?.item as? T
+        return item?.item
     }
     
     public func remove(_ key: String) {
