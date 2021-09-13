@@ -8,36 +8,79 @@
 
 import UIKit
 
-public class MixCacheItem: NSObject, NSCoding {
+extension NSKeyedUnarchiver {
     
-    public var obj: NSCoding
+    static func mix_unarchive<T>(_ data: Data, cls: T.Type) -> T? where T : NSObject, T : NSCoding {
+        var item: T?
+        if #available(iOS 12.0, *) {
+            item = try? self.unarchivedObject(ofClass: cls, from: data)
+        }
+        else {
+            item = self.unarchiveObject(with: data) as? T
+        }
+        return item
+    }
+    
+    static func mix_unarchive<T>(path: String, cls: T.Type) -> T? where T : NSObject, T : NSCoding {
+        guard let data = try? NSData(contentsOfFile: path) as Data else {
+            return nil
+        }
+        return self.mix_unarchive(data, cls: cls)
+    }
+}
+
+extension NSKeyedArchiver {
+    static func mix_archive(_ obj: Any, secure: Bool? = true, toFile path: String? = nil) -> Data? {
+        var data: Data?
+        if #available(iOS 12.0, *) {
+            data = try? self.archivedData(withRootObject: obj, requiringSecureCoding: secure ?? true)
+        }
+        else {
+            data = self.archivedData(withRootObject: obj)
+        }
+        if let data = data, let path = path {
+            try? data.write(to: URL(fileURLWithPath: path))
+        }
+        return data
+    }
+}
+
+public class MixCacheItem<T>: NSObject, NSSecureCoding where T: NSObject, T: NSCoding {
+    public static var supportsSecureCoding: Bool {
+        return true
+    }
+    
+    public var item: T
     public var expires: Date?
     
-    public init(_ obj: NSCoding, _ expires: Date?) {
-        self.obj = obj;
+    public var didExpire: Bool {
+        let val = self.expires?.timeIntervalSinceNow ?? 0
+        return val < 0
+    }
+    
+    public init(_ item: T, _ expires: Date? = nil) {
+        self.item = item
         self.expires = expires
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        guard let obj = aDecoder.decodeObject(forKey: "obj") as? NSCoding else {
+        guard let item = aDecoder.decodeObject(of: T.self, forKey: "item") else {
             return nil
         }
-        self.obj = obj
-        self.expires = aDecoder.decodeObject(forKey: "expires") as? Date
+        self.item = item
+        self.expires = aDecoder.decodeObject(of: NSDate.self, forKey: "expires") as Date?
         super.init()
     }
     
     public func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.obj, forKey: "obj")
+        aCoder.encode(self.item, forKey: "item")
         if let expires = self.expires {
             aCoder.encode(expires, forKey: "expires")
         }
     }
     
-    public func didExpire() -> Bool {
-        if let expires = self.expires {
-            return expires.timeIntervalSinceNow < 0
-        }
-        return false
+    public override var description: String {
+        let expiresStr = self.expires != nil ? "\(self.expires!)" : "nil"
+        return "item: \(self.item)\nexpires: \(expiresStr)"
     }
 }

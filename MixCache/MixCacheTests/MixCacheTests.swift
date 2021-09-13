@@ -24,144 +24,108 @@ class MixCacheTests: XCTestCase {
     func testInit() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        var cache: MixFileCache? = MixFileCache.default
+        var cache: MixFileCache? = MixFileCache.shared
         XCTAssertNotNil(cache, "init with default failed");
         
         cache = MixFileCache("TestCache")
         XCTAssertNotNil(cache, "init with name failed");
     }
     
+    func testArchiver() {
+        let data = NSKeyedArchiver.mix_archive("333", secure: true, toFile: nil)
+        XCTAssertNotNil(data);
+        if let data = data {
+            let item = NSKeyedUnarchiver.mix_unarchive(data, cls: NSString.self)
+            XCTAssertNotNil(item);
+        }
+    }
+    
+    func testCacheable() {
+        let x = "ccccc".codedObject
+        XCTAssertNotNil(x);
+        let y = 123.codedObject
+        print(y.intValue)
+        XCTAssertNotNil(y);
+        let z = 1234.234.codedObject
+        print(z.floatValue)
+        XCTAssertNotNil(z);
+        let a = Date().codedObject
+        XCTAssertNotNil(a);
+        print(a)
+        let b = Data().codedObject
+        XCTAssertNotNil(b);
+        print(b)
+    }
+    
+    func testCacheItem() {
+        print("-----archive------")
+        let item = MixCacheItem("1234dsddsddsdsd56" as NSString, Date())
+        XCTAssertNotNil(item, "init item failed");
+        print(item)
+        let data = NSKeyedArchiver.mix_archive(item, secure: true, toFile: nil)
+        XCTAssertNotNil(data, "archive item failed");
+        print("-----unarchive------")
+        let newItem = NSKeyedUnarchiver.mix_unarchive(data!, cls: MixCacheItem<NSString>.self)
+        XCTAssertNotNil(newItem, "unarchive item failed");
+        print(newItem ?? "")
+    }
+    
     func testString() {
         let obj = "xxxxxx"
         let key = "testStringKey"
-        MixFileCache.default.set(obj, key: key)
-        if let obj1: String = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj, obj1)
-        }
-        else {
-            XCTFail()
-        }
+        MixFileCache.shared.set(obj, key: key)
+        let obj1: String? = MixFileCache.shared.get(key)
+        XCTAssertNotNil(obj1)
     }
-    
-    func testStrings() {
-        let obj = ["xxxxxx", "dddd", "e3333"]
-        let key = "testObjectsKey"
-        MixFileCache.default.set(obj, key: key)
-        if let obj1: [String] = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj, obj1)
-        }
-        else {
-            XCTFail()
-        }
-    }
-    
+
     func testDate() {
         let obj = Date()
         let key = "testDateKey"
-        MixFileCache.default.set(obj, key: key)
-        if let obj1: Date = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj, obj1)
-        }
-        else {
-            XCTFail()
-        }
+        MixFileCache.shared.set(obj, key: key)
+        let obj1: Date? = MixFileCache.shared.get(key)
+        XCTAssertNotNil(obj1)
     }
-    
+
     func testData() {
-        if let obj = "123".data(using: .utf8) {
-            let key = "testDataKey"
-            MixFileCache.default.set(obj, key: key)
-            MixFileCache.default.clearInternalCache()
-            if let obj1: Data = MixFileCache.default.get(key) {
-                XCTAssertEqual(obj, obj1)
-            }
-            else {
-                XCTFail()
-            }
-        }
-    }
-    
-    func testNSCoding() {
-        let obj = NSUUID()
-        let key = "testNSCodingKey"
-        MixFileCache.default.set(obj, key: key)
-        MixFileCache.default.clearInternalCache()
-        if let obj1: NSUUID = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj, obj1)
-        }
-        else {
-            XCTFail()
-        }
-    }
-    
-    func testNSCodingObjects() {
-        let obj = [NSUUID(), NSUUID(), NSUUID(), NSUUID()]
-        let key = "testNSCodingObjectsKey"
-        MixFileCache.default.set(obj, key: key)
-        MixFileCache.default.clearInternalCache()
-        if let obj1: [NSUUID] = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj, obj1)
-        }
-        else {
-            XCTFail()
-        }
+        let obj = "123dddddd".data(using: .utf8)! as Data
+        let key = "testDataKey"
+        MixFileCache.shared.set(obj, key: key)
+        let obj1: Data? = MixFileCache.shared.get(key)
+        XCTAssertNotNil(obj1)
     }
     
     func testInt() {
         let obj = 500
         let key = "testIntKey"
-        MixFileCache.default.set(obj, key: key)
-        MixFileCache.default.clearInternalCache()
-        if let obj1: Int = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj, obj1)
-        }
-        else {
-            XCTFail()
-        }
+        MixFileCache.shared.set(obj, key: key)
+        let obj1: Int? = MixFileCache.shared.get(key)
+        XCTAssertNotNil(obj1)
     }
-    
+
     func testMixReturn() {
         let obj = 500
         let key = "testMixKey"
-        MixFileCache.default.set(obj, key: key)
-        MixFileCache.default.clearInternalCache()
-        
-        if let obj1:Float = MixFileCache.default.get(key) {
-            XCTAssertEqual(obj1, 500.0)
-        }
-        else {
-            XCTFail()
-        }
+        MixFileCache.shared.set(obj, key: key)
+        let obj1: Float? = MixFileCache.shared.get(key)
+        XCTAssertNotNil(obj1)
     }
     
     func testWrongReturn() {
         let obj = 500
         let key = "testWrongKey"
-        MixFileCache.default.set(obj, key: key)
-        MixFileCache.default.clearInternalCache()
-        
-        if let obj1: String = MixFileCache.default.get(key) {
-            print(obj1)
-            XCTFail()
-        }
+        MixFileCache.shared.set(obj, key: key)
+        let obj1: String? = MixFileCache.shared.get(key)
+        XCTAssertNil(obj1)
     }
-    
-    func testExists() {
-        let key = "testExistsKey"
-        MixFileCache.default.set("ccccc", key: key)
-        XCTAssertTrue(MixFileCache.default.exists(key: key), "key \(key) should exists")
-        let key1 = "testExistsKey1"
-        XCTAssertFalse(MixFileCache.default.exists(key: key1), "key \(key1) should not exists")
-    }
-    
+
     func testRemoveObject() {
         let key = "testRemoveKey"
-        MixFileCache.default.set("dddd", key: key)
-        MixFileCache.default.remove(objectForKey: key)
+        MixFileCache.shared.set("dddd", key: key)
+        MixFileCache.shared.remove(key)
         let key1 = "testRemoveKey1"
-        MixFileCache.default.remove(objectForKey: key1)
+        MixFileCache.shared.remove(key1)
         let key2 = ""
-        MixFileCache.default.remove(objectForKey: key2)
+        MixFileCache.shared.remove(key2)
     }
     
 }

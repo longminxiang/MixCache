@@ -10,19 +10,15 @@ import UIKit
 
 public class MixFileCache: NSObject, MixCacheProtocol {
 
-    private var internalCache: NSCache<NSString, MixCacheItem> = NSCache()
+    private var internalCache: NSCache<NSString, AnyObject> = NSCache()
     private var queue: DispatchQueue
     private var directory: URL
     
-    /// Default cache instance. using "MixCache" for the name
-    public static let `default`: MixFileCache = {
+    public static let shared: MixFileCache = {
         let cache = MixFileCache("MixCache")
         return cache!
     }()
     
-    /// Init method.
-    ///
-    /// - parameter name: a name of the cache file directory
     public init?(_ name: String) {
         
         guard let cacheDic = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).last else {
@@ -38,91 +34,75 @@ public class MixFileCache: NSObject, MixCacheProtocol {
         self.queue = DispatchQueue(label: name)
         self.internalCache.name = name
     }
+    
+    public func set<T: MixCacheable>(_ obj: T, key: String, expires: Date?=nil) {
+        self.set(obj, key: key, expires: expires, sync: false)
+    }
   
-    /// set method
-    public func _set(_ obj: NSCoding, key: String, expires: Date?=nil) {
-        let item = MixCacheItem(obj, expires)
-        self.internalCache.setObject(item, forKey: key as NSString)
-        self.queue.async {
-            if let path = self.getURL(key: key)?.path {
-                NSKeyedArchiver.archiveRootObject(item, toFile: path)
+    public func set<T: MixCacheable>(_ obj: T, key: String, expires: Date?=nil, sync: Bool?=nil) {
+        let item = MixCacheItem(obj.codedObject, expires)
+        let path = self.getURL(key: key).path
+        let isSync = sync ?? false
+        if (isSync) {
+            self.queue.sync {
+                _ = NSKeyedArchiver.mix_archive(item, secure: true, toFile: path)
+            }
+        }
+        else {
+            self.internalCache.setObject(item, forKey: key as NSString)
+            self.queue.async {
+                _ = NSKeyedArchiver.mix_archive(item, secure: true, toFile: path)
             }
         }
     }
     
-    /// get method
-    public func _get<T>(_ key: String) -> T? {
-        var item = self.internalCache.object(forKey: key as NSString)
-        
-        if item == nil {
-            self.queue.sync {
-                if let path = self.getURL(key: key)?.path {
-                    item = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? MixCacheItem
-                }
+    public func get<T: MixCacheable>(_ key: String) -> T? {
+        if let item = self.internalCache.object(forKey: key as NSString) as? MixCacheItem<T.RefType> {
+            if (item.didExpire) {
+                self.remove(key)
             }
+            return item.didExpire ? nil : item.item as? T
         }
-        
+
+        var item: MixCacheItem<T.RefType>?
+        let path = self.getURL(key: key).path
+        self.queue.sync {
+            item = NSKeyedUnarchiver.mix_unarchive(path: path, cls: MixCacheItem<T.RefType>.self)
+        }
+
         if let item = item {
-            if item.didExpire()  {
-                self.remove(objectForKey: key)
+            if item.didExpire  {
+                self.remove(key)
             }
             else {
                 self.internalCache.setObject(item, forKey: key as NSString)
             }
         }
-        return item?.obj as? T
+        return item?.item as? T
     }
     
-    /// Check the cached object is exists
-    ///
-    /// - parameter key:        The key
-    ///
-    /// - returns: True if the object is exists
-    public func exists(key: String) -> Bool {
-        var item: MixCacheItem? = self.internalCache.object(forKey: key as NSString)
-        if item == nil {
-            self.queue.sync {
-                 if let path = self.getURL(key: key)?.path {
-                    item = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? MixCacheItem
-                }
-            }
+    public func remove(_ key: String) {
+        guard !key.isEmpty else {
+            return
         }
-        if let item = item {
-            return !item.didExpire()
-        }
-        return false
-    }
-    
-    /// Remove the cached object
-    ///
-    /// - parameter key:        The key
-    public func remove(objectForKey key: String) {
         self.internalCache.removeObject(forKey: key as NSString)
         self.queue.async {
-            if let url = self.getURL(key: key) {
-                try? FileManager.default.removeItem(at: url)
-            }
+            let url = self.getURL(key: key)
+            try? FileManager.default.removeItem(at: url)
         }
     }
     
-    /// Remove all the cached object
-    public func removeAllObjects() {
+    public func removeAll() {
         self.internalCache.removeAllObjects()
         self.queue.async {
             try? FileManager.default.removeItem(at: self.directory)
             try? FileManager.default.createDirectory(at: self.directory, withIntermediateDirectories: true, attributes: nil)
         }
     }
-    
-    /// Clean the internal cached objects
-    public func clearInternalCache() {
-        self.internalCache.removeAllObjects()
-    }
-    
+
     // MARK: Private
     
-    private func getURL(key: String) -> URL? {
-        if key == "" { return nil }
+    private func getURL(key: String) -> URL {
         return self.directory.appendingPathComponent(key)
     }
 }
