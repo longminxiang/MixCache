@@ -45,13 +45,13 @@ public class MixFileCache: NSObject, MixCacheProtocol {
         let isSync = sync ?? false
         if (isSync) {
             self.queue.sync {
-                _ = NSKeyedArchiver.mix_archive(item, secure: true, toFile: path)
+                _ = NSKeyedArchiver.mixcache_archive(item, secure: true, toFile: path)
             }
         }
         else {
             self.internalCache.setObject(item, forKey: key as NSString)
             self.queue.async {
-                _ = NSKeyedArchiver.mix_archive(item, secure: true, toFile: path)
+                _ = NSKeyedArchiver.mixcache_archive(item, secure: true, toFile: path)
             }
         }
     }
@@ -67,7 +67,7 @@ public class MixFileCache: NSObject, MixCacheProtocol {
         var item: MixCacheItem<T.RefType>?
         let path = self.getURL(key: key).path
         self.queue.sync {
-            item = NSKeyedUnarchiver.mix_unarchive(path: path, cls: MixCacheItem<T.RefType>.self)
+            item = NSKeyedUnarchiver.mixcache_unarchive(path: path)
         }
 
         if let item = item {

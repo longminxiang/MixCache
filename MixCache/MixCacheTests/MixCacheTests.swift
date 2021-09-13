@@ -32,10 +32,10 @@ class MixCacheTests: XCTestCase {
     }
     
     func testArchiver() {
-        let data = NSKeyedArchiver.mix_archive("333", secure: true, toFile: nil)
+        let data = NSKeyedArchiver.mixcache_archive("333", secure: true, toFile: nil)
         XCTAssertNotNil(data);
         if let data = data {
-            let item = NSKeyedUnarchiver.mix_unarchive(data, cls: NSString.self)
+            let item: NSString? = NSKeyedUnarchiver.mixcache_unarchive(data)
             XCTAssertNotNil(item);
         }
     }
@@ -62,10 +62,10 @@ class MixCacheTests: XCTestCase {
         let item = MixCacheItem("1234dsddsddsdsd56" as NSString, Date())
         XCTAssertNotNil(item, "init item failed");
         print(item)
-        let data = NSKeyedArchiver.mix_archive(item, secure: true, toFile: nil)
+        let data = NSKeyedArchiver.mixcache_archive(item, secure: true, toFile: nil)
         XCTAssertNotNil(data, "archive item failed");
         print("-----unarchive------")
-        let newItem = NSKeyedUnarchiver.mix_unarchive(data!, cls: MixCacheItem<NSString>.self)
+        let newItem: MixCacheItem<NSString>? = NSKeyedUnarchiver.mixcache_unarchive(data!)
         XCTAssertNotNil(newItem, "unarchive item failed");
         print(newItem ?? "")
     }
