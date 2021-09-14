@@ -9,6 +9,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/longminxiang/MixCache.git", :tag => "v" + s.version.to_s }
   s.requires_arc = true
   s.platform     = :ios, '9.0'
-  s.source_files = "MixCache/*.{swift}"
+  s.source_files = "Source/*.{swift}"
   s.swift_version = '5.0'
 end

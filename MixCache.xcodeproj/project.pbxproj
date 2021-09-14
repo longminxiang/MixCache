@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		075E63C71E2E20B800AC8587 /* MixCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075E63BD1E2E20B800AC8587 /* MixCache.framework */; };
-		075E63CC1E2E20B800AC8587 /* MixCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E63CB1E2E20B800AC8587 /* MixCacheTests.swift */; };
-		075E63CE1E2E20B800AC8587 /* MixCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 075E63C01E2E20B800AC8587 /* MixCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		078987B91E30592D00120C41 /* MixCacheProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078987B81E30592D00120C41 /* MixCacheProtocol.swift */; };
-		078987BB1E305D2700120C41 /* MixFileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078987BA1E305D2700120C41 /* MixFileCache.swift */; };
-		07C1645F1E2F2795007F7CD5 /* MixCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1645E1E2F2795007F7CD5 /* MixCacheable.swift */; };
-		07C164611E2F2A34007F7CD5 /* MixCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C164601E2F2A34007F7CD5 /* MixCacheItem.swift */; };
+		078FDBEE26F0A8DF00066EC6 /* MixCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBEC26F0A82800066EC6 /* MixCacheTests.swift */; };
+		078FDBEF26F0A8E800066EC6 /* MixCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBE826F0A81C00066EC6 /* MixCacheItem.swift */; };
+		078FDBF026F0A8E800066EC6 /* MixCacheProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBE926F0A81C00066EC6 /* MixCacheProtocol.swift */; };
+		078FDBF226F0A8E800066EC6 /* MixCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBE726F0A81C00066EC6 /* MixCacheable.swift */; };
+		078FDBF326F0A8E800066EC6 /* MixFileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBE526F0A81C00066EC6 /* MixFileCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,17 +27,17 @@
 
 /* Begin PBXFileReference section */
 		075E63BD1E2E20B800AC8587 /* MixCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MixCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		075E63C01E2E20B800AC8587 /* MixCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixCache.h; sourceTree = "<group>"; };
-		075E63C11E2E20B800AC8587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		075E63C61E2E20B800AC8587 /* MixCacheTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixCacheTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		075E63CB1E2E20B800AC8587 /* MixCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixCacheTests.swift; sourceTree = "<group>"; };
-		075E63CD1E2E20B800AC8587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		078987B81E30592D00120C41 /* MixCacheProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixCacheProtocol.swift; sourceTree = "<group>"; };
-		078987BA1E305D2700120C41 /* MixFileCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixFileCache.swift; sourceTree = "<group>"; };
 		078FDBE226F0A74C00066EC6 /* MixCache.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = MixCache.podspec; sourceTree = "<group>"; };
 		078FDBE326F0A75100066EC6 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		07C1645E1E2F2795007F7CD5 /* MixCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixCacheable.swift; sourceTree = "<group>"; };
-		07C164601E2F2A34007F7CD5 /* MixCacheItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixCacheItem.swift; sourceTree = "<group>"; };
+		078FDBE526F0A81C00066EC6 /* MixFileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixFileCache.swift; sourceTree = "<group>"; };
+		078FDBE626F0A81C00066EC6 /* MixCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixCache.h; sourceTree = "<group>"; };
+		078FDBE726F0A81C00066EC6 /* MixCacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixCacheable.swift; sourceTree = "<group>"; };
+		078FDBE826F0A81C00066EC6 /* MixCacheItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixCacheItem.swift; sourceTree = "<group>"; };
+		078FDBE926F0A81C00066EC6 /* MixCacheProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixCacheProtocol.swift; sourceTree = "<group>"; };
+		078FDBEA26F0A81C00066EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		078FDBEC26F0A82800066EC6 /* MixCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixCacheTests.swift; sourceTree = "<group>"; };
+		078FDBED26F0A82800066EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +64,8 @@
 			children = (
 				078FDBE326F0A75100066EC6 /* Package.swift */,
 				078FDBE226F0A74C00066EC6 /* MixCache.podspec */,
-				075E63BF1E2E20B800AC8587 /* MixCache */,
-				075E63CA1E2E20B800AC8587 /* MixCacheTests */,
+				078FDBE426F0A81C00066EC6 /* Source */,
+				078FDBEB26F0A82800066EC6 /* Tests */,
 				075E63BE1E2E20B800AC8587 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,26 +79,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		075E63BF1E2E20B800AC8587 /* MixCache */ = {
+		078FDBE426F0A81C00066EC6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				075E63C01E2E20B800AC8587 /* MixCache.h */,
-				075E63C11E2E20B800AC8587 /* Info.plist */,
-				078987BA1E305D2700120C41 /* MixFileCache.swift */,
-				078987B81E30592D00120C41 /* MixCacheProtocol.swift */,
-				07C1645E1E2F2795007F7CD5 /* MixCacheable.swift */,
-				07C164601E2F2A34007F7CD5 /* MixCacheItem.swift */,
+				078FDBE526F0A81C00066EC6 /* MixFileCache.swift */,
+				078FDBE626F0A81C00066EC6 /* MixCache.h */,
+				078FDBE726F0A81C00066EC6 /* MixCacheable.swift */,
+				078FDBE826F0A81C00066EC6 /* MixCacheItem.swift */,
+				078FDBE926F0A81C00066EC6 /* MixCacheProtocol.swift */,
+				078FDBEA26F0A81C00066EC6 /* Info.plist */,
 			);
-			path = MixCache;
+			path = Source;
 			sourceTree = "<group>";
 		};
-		075E63CA1E2E20B800AC8587 /* MixCacheTests */ = {
+		078FDBEB26F0A82800066EC6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				075E63CB1E2E20B800AC8587 /* MixCacheTests.swift */,
-				075E63CD1E2E20B800AC8587 /* Info.plist */,
+				078FDBEC26F0A82800066EC6 /* MixCacheTests.swift */,
+				078FDBED26F0A82800066EC6 /* Info.plist */,
 			);
-			path = MixCacheTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,7 +108,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				075E63CE1E2E20B800AC8587 /* MixCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,10 +214,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				078987B91E30592D00120C41 /* MixCacheProtocol.swift in Sources */,
-				078987BB1E305D2700120C41 /* MixFileCache.swift in Sources */,
-				07C164611E2F2A34007F7CD5 /* MixCacheItem.swift in Sources */,
-				07C1645F1E2F2795007F7CD5 /* MixCacheable.swift in Sources */,
+				078FDBEF26F0A8E800066EC6 /* MixCacheItem.swift in Sources */,
+				078FDBF026F0A8E800066EC6 /* MixCacheProtocol.swift in Sources */,
+				078FDBF226F0A8E800066EC6 /* MixCacheable.swift in Sources */,
+				078FDBF326F0A8E800066EC6 /* MixFileCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				075E63CC1E2E20B800AC8587 /* MixCacheTests.swift in Sources */,
+				078FDBEE26F0A8DF00066EC6 /* MixCacheTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,7 +371,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = MixCache/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -396,7 +394,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = MixCache/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -413,7 +411,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = CGDUQEQ6TU;
-				INFOPLIST_FILE = MixCacheTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = eric.MixCacheTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -426,7 +424,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = CGDUQEQ6TU;
-				INFOPLIST_FILE = MixCacheTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = eric.MixCacheTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
