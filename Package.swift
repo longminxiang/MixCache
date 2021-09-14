@@ -5,11 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "MixCache",
+    platforms: [.iOS(.v9)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(
-            name: "MixCache",
-            targets: ["MixCache"]),
+        .library(name: "MixCache", targets: ["MixCache"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -21,10 +20,11 @@ let package = Package(
         .target(
             name: "MixCache",
             dependencies: [],
-            path: "MixCache/MixCache",),
+            path: "MixCache/MixCache"),
         .testTarget(
             name: "MixCacheTests",
             dependencies: ["MixCache"],
-            path: "MixCache/MixCacheTests",),
-    ]
+            path: "MixCache/MixCacheTests"),
+    ],
+    swiftLanguageVersions: [.v5])
 )
