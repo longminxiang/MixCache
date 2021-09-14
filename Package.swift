@@ -25,5 +25,5 @@ let package = Package(
             dependencies: ["libMixCache"],
             path: "Tests"),
     ],
-    swiftLanguageVersions: [.v5])
+    swiftLanguageVersions: [.v5]
 )
