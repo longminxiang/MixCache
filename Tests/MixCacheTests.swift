@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MixCache
+@testable import libMixCache
 
 class MixCacheTests: XCTestCase {
     

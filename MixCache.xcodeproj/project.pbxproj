@@ -7,23 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		075E63C71E2E20B800AC8587 /* MixCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075E63BD1E2E20B800AC8587 /* MixCache.framework */; };
 		078FDBEE26F0A8DF00066EC6 /* MixCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBEC26F0A82800066EC6 /* MixCacheTests.swift */; };
 		078FDBEF26F0A8E800066EC6 /* MixCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBE826F0A81C00066EC6 /* MixCacheItem.swift */; };
 		078FDBF026F0A8E800066EC6 /* MixCacheProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBE926F0A81C00066EC6 /* MixCacheProtocol.swift */; };
 		078FDBF226F0A8E800066EC6 /* MixCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBE726F0A81C00066EC6 /* MixCacheable.swift */; };
 		078FDBF326F0A8E800066EC6 /* MixFileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBE526F0A81C00066EC6 /* MixFileCache.swift */; };
+		078FDBFF26F0AD5200066EC6 /* MixCacheProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBE926F0A81C00066EC6 /* MixCacheProtocol.swift */; };
+		078FDC0026F0AD5200066EC6 /* MixCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBE726F0A81C00066EC6 /* MixCacheable.swift */; };
+		078FDC0126F0AD5200066EC6 /* MixFileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBE526F0A81C00066EC6 /* MixFileCache.swift */; };
+		078FDC0226F0AD5200066EC6 /* MixCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FDBE826F0A81C00066EC6 /* MixCacheItem.swift */; };
+		078FDC0626F0ADED00066EC6 /* liblibMixCache.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 078FDBF826F0AD3200066EC6 /* liblibMixCache.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		075E63C81E2E20B800AC8587 /* PBXContainerItemProxy */ = {
+		078FDC0326F0ADC200066EC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 075E63B41E2E20B800AC8587 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 075E63BC1E2E20B800AC8587;
-			remoteInfo = MixCache;
+			remoteGlobalIDString = 078FDBF726F0AD3200066EC6;
+			remoteInfo = libMixCache;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		078FDBF626F0AD3200066EC6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		075E63BD1E2E20B800AC8587 /* MixCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MixCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +54,7 @@
 		078FDBEA26F0A81C00066EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		078FDBEC26F0A82800066EC6 /* MixCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixCacheTests.swift; sourceTree = "<group>"; };
 		078FDBED26F0A82800066EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		078FDBF826F0AD3200066EC6 /* liblibMixCache.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibMixCache.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +69,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				075E63C71E2E20B800AC8587 /* MixCache.framework in Frameworks */,
+				078FDC0626F0ADED00066EC6 /* liblibMixCache.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		078FDBF526F0AD3200066EC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +91,7 @@
 				078FDBE426F0A81C00066EC6 /* Source */,
 				078FDBEB26F0A82800066EC6 /* Tests */,
 				075E63BE1E2E20B800AC8587 /* Products */,
+				078FDC0526F0ADED00066EC6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,6 +100,7 @@
 			children = (
 				075E63BD1E2E20B800AC8587 /* MixCache.framework */,
 				075E63C61E2E20B800AC8587 /* MixCacheTests.xctest */,
+				078FDBF826F0AD3200066EC6 /* liblibMixCache.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +125,13 @@
 				078FDBED26F0A82800066EC6 /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		078FDC0526F0ADED00066EC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,12 +176,29 @@
 			buildRules = (
 			);
 			dependencies = (
-				075E63C91E2E20B800AC8587 /* PBXTargetDependency */,
+				078FDC0426F0ADC200066EC6 /* PBXTargetDependency */,
 			);
 			name = MixCacheTests;
 			productName = MixCacheTests;
 			productReference = 075E63C61E2E20B800AC8587 /* MixCacheTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		078FDBF726F0AD3200066EC6 /* libMixCache */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 078FDBFC26F0AD3200066EC6 /* Build configuration list for PBXNativeTarget "libMixCache" */;
+			buildPhases = (
+				078FDBF426F0AD3200066EC6 /* Sources */,
+				078FDBF526F0AD3200066EC6 /* Frameworks */,
+				078FDBF626F0AD3200066EC6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libMixCache;
+			productName = libMixCache;
+			productReference = 078FDBF826F0AD3200066EC6 /* liblibMixCache.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -156,7 +206,7 @@
 		075E63B41E2E20B800AC8587 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Eric Lung";
 				TargetAttributes = {
@@ -169,6 +219,11 @@
 					075E63C51E2E20B800AC8587 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = CGDUQEQ6TU;
+						ProvisioningStyle = Automatic;
+					};
+					078FDBF726F0AD3200066EC6 = {
+						CreatedOnToolsVersion = 12.5.1;
+						DevelopmentTeam = U7D47F5WSK;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -188,6 +243,7 @@
 			targets = (
 				075E63BC1E2E20B800AC8587 /* MixCache */,
 				075E63C51E2E20B800AC8587 /* MixCacheTests */,
+				078FDBF726F0AD3200066EC6 /* libMixCache */,
 			);
 		};
 /* End PBXProject section */
@@ -229,13 +285,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		078FDBF426F0AD3200066EC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				078FDC0126F0AD5200066EC6 /* MixFileCache.swift in Sources */,
+				078FDBFF26F0AD5200066EC6 /* MixCacheProtocol.swift in Sources */,
+				078FDC0226F0AD5200066EC6 /* MixCacheItem.swift in Sources */,
+				078FDC0026F0AD5200066EC6 /* MixCacheable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		075E63C91E2E20B800AC8587 /* PBXTargetDependency */ = {
+		078FDC0426F0ADC200066EC6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 075E63BC1E2E20B800AC8587 /* MixCache */;
-			targetProxy = 075E63C81E2E20B800AC8587 /* PBXContainerItemProxy */;
+			target = 078FDBF726F0AD3200066EC6 /* libMixCache */;
+			targetProxy = 078FDC0326F0ADC200066EC6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -432,6 +499,47 @@
 			};
 			name = Release;
 		};
+		078FDBFD26F0AD3200066EC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7D47F5WSK;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		078FDBFE26F0AD3200066EC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7D47F5WSK;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -458,6 +566,15 @@
 			buildConfigurations = (
 				075E63D51E2E20B800AC8587 /* Debug */,
 				075E63D61E2E20B800AC8587 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		078FDBFC26F0AD3200066EC6 /* Build configuration list for PBXNativeTarget "libMixCache" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				078FDBFD26F0AD3200066EC6 /* Debug */,
+				078FDBFE26F0AD3200066EC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
