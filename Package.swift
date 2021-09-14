@@ -8,7 +8,7 @@ let package = Package(
     platforms: [.iOS(.v9)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(name: "MixCache", targets: ["MixCache"]),
+        .library(name: "MixCache", targets: ["libMixCache"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
