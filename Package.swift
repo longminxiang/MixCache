@@ -20,11 +20,11 @@ let package = Package(
         .target(
             name: "MixCache",
             dependencies: [],
-            path: "MixCache/MixCache"),
+            path: "MixCache"),
         .testTarget(
             name: "MixCacheTests",
             dependencies: ["MixCache"],
-            path: "MixCache/MixCacheTests"),
+            path: "MixCacheTests"),
     ],
     swiftLanguageVersions: [.v5])
 )
