@@ -88,7 +88,7 @@
 			children = (
 				078FDBE326F0A75100066EC6 /* Package.swift */,
 				078FDBE226F0A74C00066EC6 /* MixCache.podspec */,
-				078FDBE426F0A81C00066EC6 /* Source */,
+				078FDBE426F0A81C00066EC6 /* Sources */,
 				078FDBEB26F0A82800066EC6 /* Tests */,
 				075E63BE1E2E20B800AC8587 /* Products */,
 				078FDC0526F0ADED00066EC6 /* Frameworks */,
@@ -105,7 +105,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		078FDBE426F0A81C00066EC6 /* Source */ = {
+		078FDBE426F0A81C00066EC6 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				078FDBE526F0A81C00066EC6 /* MixFileCache.swift */,
@@ -115,7 +115,7 @@
 				078FDBE926F0A81C00066EC6 /* MixCacheProtocol.swift */,
 				078FDBEA26F0A81C00066EC6 /* Info.plist */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		078FDBEB26F0A82800066EC6 /* Tests */ = {
