@@ -10,10 +10,10 @@ import UIKit
 
 extension NSKeyedUnarchiver {
     
-    static func mixcache_unarchive<T>(_ data: Data) -> T? where T : NSObject, T : NSCoding {
+    static func mixcache_unarchive<T>(_ data: Data) throws -> T? where T : NSObject, T : NSCoding {
         var item: T?
         if #available(iOS 11.0, *) {
-            item = try? self.unarchivedObject(ofClass: T.self, from: data)
+            item = try self.unarchivedObject(ofClass: T.self, from: data)
         }
         else {
             item = self.unarchiveObject(with: data) as? T
@@ -21,11 +21,11 @@ extension NSKeyedUnarchiver {
         return item
     }
     
-    static func mixcache_unarchive<T>(path: String) -> T? where T : NSObject, T : NSCoding {
+    static func mixcache_unarchive<T>(path: String) throws -> T? where T : NSObject, T : NSCoding {
         guard let data = try? NSData(contentsOfFile: path) as Data else {
             return nil
         }
-        let item: T? = self.mixcache_unarchive(data)
+        let item: T? = try self.mixcache_unarchive(data)
         return item
     }
 }

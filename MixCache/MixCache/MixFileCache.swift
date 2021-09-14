@@ -14,6 +14,7 @@ public class MixFileCache: NSObject, MixCacheProtocol {
     private var queue: DispatchQueue
     private var directory: URL
     public var isSync: Bool = false
+    public var debug: Bool = false
     
     public static let shared: MixFileCache = {
         let cache = MixFileCache("MixCache")
@@ -63,7 +64,14 @@ public class MixFileCache: NSObject, MixCacheProtocol {
         var item: MixCacheItem<T>?
         let path = self.getURL(key: key).path
         self.queue.sync {
-            item = NSKeyedUnarchiver.mixcache_unarchive(path: path)
+            do {
+                item = try NSKeyedUnarchiver.mixcache_unarchive(path: path)
+            }
+            catch {
+                if (self.debug) {
+                    print(error)
+                }
+            }
         }
 
         if let item = item {

@@ -14,6 +14,8 @@ class MixCacheTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        MixFileCache.shared.debug = true
+        MixFileCache.shared.isSync = true
     }
     
     override func tearDown() {
@@ -35,7 +37,7 @@ class MixCacheTests: XCTestCase {
         let data = NSKeyedArchiver.mixcache_archive("333", secure: true, toFile: nil)
         XCTAssertNotNil(data);
         if let data = data {
-            let item: NSString? = NSKeyedUnarchiver.mixcache_unarchive(data)
+            let item: NSString? = try? NSKeyedUnarchiver.mixcache_unarchive(data)
             XCTAssertNotNil(item);
         }
     }
@@ -65,7 +67,7 @@ class MixCacheTests: XCTestCase {
         let data = NSKeyedArchiver.mixcache_archive(item, secure: true, toFile: nil)
         XCTAssertNotNil(data, "archive item failed");
         print("-----unarchive------")
-        let newItem: MixCacheItem<NSString>? = NSKeyedUnarchiver.mixcache_unarchive(data!)
+        let newItem: MixCacheItem<NSString>? = try? NSKeyedUnarchiver.mixcache_unarchive(data!)
         XCTAssertNotNil(newItem, "unarchive item failed");
         print(newItem ?? "")
     }
@@ -132,7 +134,7 @@ class MixCacheTests: XCTestCase {
         let key = "testNSDictionaryKey"
         let obj = NSMutableDictionary()
         obj.setObject("yyy", forKey: "a" as NSString)
-        obj.setObject(NSDate(), forKey: "cc" as NSString)
+        obj.setObject(Date(), forKey: "cc" as NSString)
         MixFileCache.shared.set(obj, key: key)
         let obj1: NSMutableDictionary? = MixFileCache.shared.get(key)
         XCTAssertNotNil(obj1)
