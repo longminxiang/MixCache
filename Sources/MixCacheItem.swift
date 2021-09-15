@@ -46,12 +46,12 @@ extension NSKeyedArchiver {
     }
 }
 
-public class MixCacheItem<T: NSCoding>: NSObject, NSSecureCoding {
+public class MixCacheItem: NSObject, NSSecureCoding {
     public static var supportsSecureCoding: Bool {
         return true
     }
     
-    public var item: T
+    public var item: AnyObject
     public var expires: Date?
     
     public var didExpire: Bool {
@@ -59,16 +59,16 @@ public class MixCacheItem<T: NSCoding>: NSObject, NSSecureCoding {
         return val < 0
     }
     
-    public init(_ item: T, _ expires: Date? = nil) {
+    public init(_ item: AnyObject, _ expires: Date? = nil) {
         self.item = item
         self.expires = expires
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        guard let item = aDecoder.decodeObject(of: [T.self, NSObject.self], forKey: "item") as? T else {
+        guard let item = aDecoder.decodeObject(of: [NSObject.self], forKey: "item") else {
             return nil
         }
-        self.item = item
+        self.item = item as AnyObject
         self.expires = aDecoder.decodeObject(of: NSDate.self, forKey: "expires") as Date?
         super.init()
     }

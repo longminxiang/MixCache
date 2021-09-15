@@ -67,7 +67,7 @@ class MixCacheTests: XCTestCase {
         let data = NSKeyedArchiver.mixcache_archive(item, secure: true, toFile: nil)
         XCTAssertNotNil(data, "archive item failed");
         print("-----unarchive------")
-        let newItem: MixCacheItem<NSString>? = try? NSKeyedUnarchiver.mixcache_unarchive(data!)
+        let newItem: MixCacheItem? = try? NSKeyedUnarchiver.mixcache_unarchive(data!)
         XCTAssertNotNil(newItem, "unarchive item failed");
         print(newItem ?? "")
     }

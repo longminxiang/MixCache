@@ -37,7 +37,7 @@ public class MixFileCache: NSObject, MixCacheProtocol {
         self.internalCache.name = name
     }
   
-    public func set<T: NSCoding>(_ obj: T, key: String, expires: Date?=nil) {
+    public func set(_ obj: AnyObject, key: String, expires: Date?=nil) {
         let item = MixCacheItem(obj, expires)
         let path = self.getURL(key: key).path
         if (self.isSync) {
@@ -54,14 +54,14 @@ public class MixFileCache: NSObject, MixCacheProtocol {
     }
     
     public func get<T: NSCoding>(_ key: String) -> T? {
-        if let item = self.internalCache.object(forKey: key as NSString) as? MixCacheItem<T> {
+        if let item = self.internalCache.object(forKey: key as NSString) as? MixCacheItem {
             if (item.didExpire) {
                 self.remove(key)
             }
-            return item.didExpire ? nil : item.item
+            return item.didExpire ? nil : item.item as? T
         }
 
-        var item: MixCacheItem<T>?
+        var item: MixCacheItem?
         let path = self.getURL(key: key).path
         self.queue.sync {
             do {
@@ -82,7 +82,7 @@ public class MixFileCache: NSObject, MixCacheProtocol {
                 self.internalCache.setObject(item, forKey: key as NSString)
             }
         }
-        return item?.item
+        return item?.item as? T
     }
     
     public func remove(_ key: String) {
