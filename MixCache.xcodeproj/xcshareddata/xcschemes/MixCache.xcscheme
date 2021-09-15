@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "075E63BC1E2E20B800AC8587"
-               BuildableName = "MixCache.framework"
+               BlueprintIdentifier = "078FDBF726F0AD3200066EC6"
+               BuildableName = "libMixCache.a"
                BlueprintName = "MixCache"
                ReferencedContainer = "container:MixCache.xcodeproj">
             </BuildableReference>
@@ -60,8 +60,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "075E63BC1E2E20B800AC8587"
-            BuildableName = "MixCache.framework"
+            BlueprintIdentifier = "078FDBF726F0AD3200066EC6"
+            BuildableName = "libMixCache.a"
             BlueprintName = "MixCache"
             ReferencedContainer = "container:MixCache.xcodeproj">
          </BuildableReference>

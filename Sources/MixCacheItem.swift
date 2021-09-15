@@ -46,7 +46,7 @@ extension NSKeyedArchiver {
     }
 }
 
-public class MixCacheItem<T>: NSObject, NSSecureCoding where T: NSObject, T: NSCoding {
+public class MixCacheItem<T: NSObject & NSCoding>: NSObject, NSSecureCoding {
     public static var supportsSecureCoding: Bool {
         return true
     }
