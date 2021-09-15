@@ -14,7 +14,7 @@ public class MixKeydArchiver {
 
 extension NSKeyedUnarchiver {
     
-    static func mixcache_unarchive<T>(_ data: Data) throws -> T? where T : NSCoding {
+    public static func mixcache_unarchive<T>(_ data: Data) throws -> T? where T : NSCoding {
         var item: T?
         if #available(iOS 11.0, *) {
             var classes: [AnyClass] = []
@@ -30,7 +30,7 @@ extension NSKeyedUnarchiver {
         return item
     }
     
-    static func mixcache_unarchive<T>(path: String) throws -> T? where T : NSCoding {
+    public static func mixcache_unarchive<T>(path: String) throws -> T? where T : NSCoding {
         guard let data = try? NSData(contentsOfFile: path) as Data else {
             return nil
         }
@@ -40,7 +40,7 @@ extension NSKeyedUnarchiver {
 }
 
 extension NSKeyedArchiver {
-    static func mixcache_archive(_ obj: Any, secure: Bool? = true, toFile path: String? = nil) -> Data? {
+    public  static func mixcache_archive(_ obj: Any, secure: Bool? = true, toFile path: String? = nil) -> Data? {
         var data: Data?
         if #available(iOS 12.0, *) {
             data = try? self.archivedData(withRootObject: obj, requiringSecureCoding: secure ?? true)
