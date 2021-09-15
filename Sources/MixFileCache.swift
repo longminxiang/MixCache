@@ -37,35 +37,31 @@ public class MixFileCache: NSObject, MixCacheProtocol {
         self.internalCache.name = name
     }
   
-    public func set(_ obj: AnyObject, key: String, expires: Date?=nil) {
-        let item = MixCacheItem(obj, expires)
+    public func set(_ obj: AnyObject, key: String) {
         let path = self.getURL(key: key).path
         if (self.isSync) {
             self.queue.sync {
-                _ = NSKeyedArchiver.mixcache_archive(item, secure: true, toFile: path)
+                _ = NSKeyedArchiver.mixcache_archive(obj, secure: true, toFile: path)
             }
         }
         else {
-            self.internalCache.setObject(item, forKey: key as NSString)
+            self.internalCache.setObject(obj, forKey: key as NSString)
             self.queue.async {
-                _ = NSKeyedArchiver.mixcache_archive(item, secure: true, toFile: path)
+                _ = NSKeyedArchiver.mixcache_archive(obj, secure: true, toFile: path)
             }
         }
     }
     
     public func get<T: NSCoding>(_ key: String) -> T? {
-        if let item = self.internalCache.object(forKey: key as NSString) as? MixCacheItem {
-            if (item.didExpire) {
-                self.remove(key)
-            }
-            return item.didExpire ? nil : item.item as? T
+        var obj = self.internalCache.object(forKey: key as NSString) as? T
+        if (obj != nil) {
+            return obj
         }
 
-        var item: MixCacheItem?
         let path = self.getURL(key: key).path
         self.queue.sync {
             do {
-                item = try NSKeyedUnarchiver.mixcache_unarchive(path: path)
+                obj = try NSKeyedUnarchiver.mixcache_unarchive(path: path)
             }
             catch {
                 if (self.debug) {
@@ -73,16 +69,7 @@ public class MixFileCache: NSObject, MixCacheProtocol {
                 }
             }
         }
-
-        if let item = item {
-            if item.didExpire  {
-                self.remove(key)
-            }
-            else {
-                self.internalCache.setObject(item, forKey: key as NSString)
-            }
-        }
-        return item?.item as? T
+        return obj
     }
     
     public func remove(_ key: String) {

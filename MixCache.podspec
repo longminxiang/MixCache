@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MixCache"
-  s.version      = "0.8.2"
+  s.version      = "0.8.3"
   s.summary      = "easy cache object"
   s.description  = "easy cache object for iOS in swift"
   s.homepage     = "https://blog.mixii.cn"

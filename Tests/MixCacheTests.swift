@@ -168,4 +168,22 @@ class MixCacheTests: XCTestCase {
         MixFileCache.shared.remove(key2)
     }
     
+    func testKeychain() {
+        MixCache.keychain.debug = true
+        var key = "intkey"
+        MixCache.keychain.set(123, key: key)
+        let obj: Int? = MixCache.keychain.get(key)
+        XCTAssertNotNil(obj)
+        
+        let obj1: Float? = MixCache.keychain.get(key)
+        XCTAssertNotNil(obj1)
+        
+        key = "stringkey"
+        MixCache.keychain.set("123", key: key)
+        let obj2: String? = MixCache.keychain.get(key)
+        XCTAssertNotNil(obj2)
+        
+        
+    }
+    
 }
