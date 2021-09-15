@@ -135,6 +135,7 @@ class MixCacheTests: XCTestCase {
         let obj = NSMutableDictionary()
         obj.setObject("yyy", forKey: "a" as NSString)
         obj.setObject(Date(), forKey: "cc" as NSString)
+        obj.setObject(NSUUID(), forKey: "dddd" as NSString)
         MixFileCache.shared.set(obj, key: key)
         let obj1: NSMutableDictionary? = MixFileCache.shared.get(key)
         XCTAssertNotNil(obj1)

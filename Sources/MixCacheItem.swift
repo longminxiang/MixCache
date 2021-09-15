@@ -46,7 +46,7 @@ extension NSKeyedArchiver {
     }
 }
 
-public class MixCacheItem<T: NSObject & NSCoding>: NSObject, NSSecureCoding {
+public class MixCacheItem<T: NSCoding>: NSObject, NSSecureCoding {
     public static var supportsSecureCoding: Bool {
         return true
     }
@@ -65,7 +65,7 @@ public class MixCacheItem<T: NSObject & NSCoding>: NSObject, NSSecureCoding {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        guard let item = aDecoder.decodeObject(of: T.self, forKey: "item") else {
+        guard let item = aDecoder.decodeObject(of: [T.self, NSObject.self], forKey: "item") as? T else {
             return nil
         }
         self.item = item

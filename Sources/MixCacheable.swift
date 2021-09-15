@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol MixCacheable {
-    associatedtype RefType where RefType: NSObject & NSCoding
+    associatedtype RefType where RefType: NSCoding
     var codedObject: RefType {get}
 }
 

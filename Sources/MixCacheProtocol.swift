@@ -10,9 +10,9 @@ import UIKit
 
 public protocol MixCacheProtocol {
     
-    func set<T: NSObject & NSCoding>(_ obj: T, key: String, expires: Date?)
+    func set<T: NSCoding>(_ obj: T, key: String, expires: Date?)
     
-    func get<T: NSObject & NSCoding>(_ key: String) -> T?
+    func get<T: NSCoding>(_ key: String) -> T?
         
     func remove(_ key: String)
     
