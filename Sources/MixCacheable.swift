@@ -29,6 +29,8 @@ extension Array: MixCacheable { public typealias RefType = NSArray }
 
 extension Dictionary: MixCacheable { public typealias RefType = NSDictionary }
 
+extension Set: MixCacheable { public typealias RefType = NSDictionary }
+
 extension Int: MixNumCacheable {}
 
 extension UInt: MixNumCacheable {}
