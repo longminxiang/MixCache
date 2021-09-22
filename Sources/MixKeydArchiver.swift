@@ -9,7 +9,8 @@
 import UIKit
 
 public class MixKeydArchiver {
-    static var extraUnarchivedClasses: [AnyClass]? = [NSDate.self, NSUUID.self, NSURL.self, NSArray.self, NSDictionary.self];
+    public static var extraUnarchivedClasses: [AnyClass]? = [
+        NSDate.self, NSUUID.self, NSURL.self, NSArray.self, NSDictionary.self, NSNumber.self, NSString.self];
 }
 
 extension NSKeyedUnarchiver {
